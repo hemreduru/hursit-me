@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hurşit Emre Duru | Yazılım Geliştirici</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-glow": "rgba(51, 13, 242, 0.5)",
+                        "background-dark": "#0d0d0d",
+                        "surface": "#131023",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.08)"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(51, 13, 242, 0.4)',
+                        'neon-hover': '0 0 30px rgba(51, 13, 242, 0.6)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0d0d0d;
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #330df2; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b2bff; 
+        }
+
+        /* Ambient Glow Background */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(51, 13, 242, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(51, 13, 242, 0.05) 0%, transparent 25%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 15px;
+            width: 2px;
+            background: linear-gradient(to bottom, #330df2 0%, rgba(51, 13, 242, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="text-white antialiased overflow-x-hidden relative">
+<!-- Ambient Background -->
+<div class="ambient-glow"></div>
+<!-- Navigation -->
+<nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+<div class="glass-panel rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#hero">Ana Sayfa</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#about">Hakkında</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#experience">Deneyim</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#projects">Projeler</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">İletişim</a>
+<a class="bg-primary hover:bg-[#4b2bff] text-white text-xs font-bold px-4 py-2 rounded-full shadow-neon hover:shadow-neon-hover transition-all duration-300" href="#">
+                CV İndir
+            </a>
+</div>
+</nav>
+<!-- Main Layout -->
+<main class="relative z-10 flex flex-col items-center w-full max-w-[1200px] mx-auto px-6 md:px-12">
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center pt-20 relative w-full" id="hero">
+<!-- Decorative Elements -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10"></div>
+<div class="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                Open to Work
+            </div>
+<h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-4 leading-tight">
+                Hurşit Emre <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">Duru</span>
+</h1>
+<h2 class="text-xl md:text-2xl text-gray-400 font-light mb-8 max-w-2xl">
+                Yazılım Geliştirici &amp; Dijital Deneyimler Mimarı
+            </h2>
+<p class="text-gray-500 max-w-lg mb-10 leading-relaxed text-sm md:text-base">
+                Karmaşık problemleri, ölçeklenebilir ve zarif kod yapılarına dönüştürüyorum. 
+                Modern web teknolojileri ile geleceği tasarlıyorum.
+            </p>
+<div class="flex gap-4">
+<a class="group relative px-8 py-3 bg-primary text-white font-bold rounded-lg overflow-hidden shadow-neon transition-all hover:shadow-neon-hover" href="#projects">
+<span class="relative z-10">Projelerimi İncele</span>
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</a>
+<a class="px-8 py-3 bg-transparent border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-colors" href="#contact">
+                    İletişime Geç
+                </a>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 animate-bounce text-white/30">
+<span class="material-symbols-outlined text-3xl">keyboard_arrow_down</span>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-24 w-full max-w-4xl" id="about">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/3 relative group">
+<div class="absolute -inset-1 bg-gradient-to-br from-primary to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+<div class="relative w-full aspect-square rounded-xl overflow-hidden glass-panel flex items-center justify-center bg-[#131023]" data-alt="Abstract minimal geometric avatar representing a developer profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyr1T-VgaEfrUchaqMG96RJ3H8fknKqWKlyO5u0nAwpMeBsXMbipTHZYF1-srvi08gDIw94uiPW8o2zrZtkbif9uOCn2khFq3EAh3Mc-apqakaTQrlkE_TGd6j-KFZE7_rf7ZcHEHlucREE8fQNHNweSPPD9_MQO2j3Ok_fuQbdyhgj3ZwVyzxFU924EG9ZRNYHZ8PoGdgQeqThQYfAh9Z-KVekLd6BlJDa0f-f-9fm2uXad4eOn-NIxThOfAPnCFCtMQjlGGr0tM'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+</div>
+<div class="w-full md:w-2/3">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">terminal</span>
+<h3 class="text-primary font-bold text-sm tracking-widest uppercase">Hakkımda</h3>
+</div>
+<h2 class="text-3xl font-bold mb-6">Kodun Ötesinde Bir Vizyon</h2>
+<p class="text-gray-400 mb-6 leading-relaxed">
+                        Merhaba, ben Hurşit. Yaratıcı kodlama ve problem çözme tutkusu olan bir yazılım geliştiricisiyim. 
+                        İstanbul merkezli olarak, şu anda hem karmaşık arka uç sistemleri hem de akıcı kullanıcı deneyimleri tasarlıyorum. 
+                        Teknolojiyi sadece bir araç olarak değil, insan hayatını kolaylaştıran bir sanat formu olarak görüyorum.
+                    </p>
+<div class="flex items-center gap-6 text-sm text-gray-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+                            İstanbul, Türkiye
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">language</span>
+                            TR / EN
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Section -->
+<section class="py-24 w-full max-w-4xl" id="experience">
+<div class="mb-12 text-center md:text-left">
+<h3 class="text-primary font-bold text-sm tracking-widest uppercase mb-2">Yolculuk</h3>
+<h2 class="text-3xl font-bold">Deneyim</h2>
+</div>
+<div class="relative timeline-line pl-2 md:pl-4 space-y-12">
+<!-- Item 1 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 bg-[#0d0d0d] border-2 border-primary rounded-full group-hover:scale-125 group-hover:bg-primary transition-all duration-300 z-10"></div>
+<div class="glass-panel p-6 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+<h4 class="text-xl font-bold text-white">Yazılım Geliştirici (Freelance)</h4>
+<span class="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">2022 - Günümüz</span>
+</div>
+<p class="text-gray-500 text-sm mb-4">Uzaktan</p>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            Global müşteriler için ölçeklenebilir web uygulamaları geliştiriyorum. Laravel ve Vue.js ekosistemlerini kullanarak
+                            özel CRM çözümleri ve e-ticaret altyapıları inşa ediyorum.
+                        </p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 bg-[#0d0d0d] border-2 border-gray-600 group-hover:border-primary rounded-full group-hover:scale-125 transition-all duration-300 z-10"></div>
+<div class="glass-panel p-6 rounded-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+<h4 class="text-xl font-bold text-white">CIU (Cyprus International University)</h4>
+<span class="text-sm font-medium text-gray-400 bg-white/5 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">2018 - 2022</span>
+</div>
+<p class="text-gray-500 text-sm mb-4">Lefkoşa, Kıbrıs</p>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            Bilgisayar Mühendisliği eğitimi süresince üniversite bünyesinde çeşitli araştırma projelerinde yer aldım.
+                            Öğrenci bilgi sistemleri ve kampüs otomasyon projelerinde stajyer yazılımcı olarak katkı sağladım.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="py-24 w-full max-w-5xl" id="skills">
+<div class="mb-12 text-center">
+<h3 class="text-primary font-bold text-sm tracking-widest uppercase mb-2">Teknoloji Yığını</h3>
+<h2 class="text-3xl font-bold">Beceriler &amp; Araçlar</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Backend Card -->
+<div class="glass-panel p-6 rounded-xl hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined">dns</span>
+<h4 class="font-bold text-lg text-white">Backend</h4>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Laravel</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">PHP</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">MySQL</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Redis</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">REST APIs</span>
+</div>
+</div>
+<!-- Frontend Card -->
+<div class="glass-panel p-6 rounded-xl hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined">devices</span>
+<h4 class="font-bold text-lg text-white">Frontend</h4>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Vue.js</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">React</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Tailwind CSS</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">JavaScript</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">HTML5/CSS3</span>
+</div>
+</div>
+<!-- DevOps & Tools Card -->
+<div class="glass-panel p-6 rounded-xl hover:border-primary/50 transition-colors">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined">settings_suggest</span>
+<h4 class="font-bold text-lg text-white">DevOps &amp; Tools</h4>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Docker</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Linux</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">Git</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">CI/CD</span>
+<span class="bg-white/5 hover:bg-white/10 text-xs text-gray-300 px-3 py-1.5 rounded border border-white/5 transition-colors">TDD</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-24 w-full" id="projects">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12">
+<div>
+<h3 class="text-primary font-bold text-sm tracking-widest uppercase mb-2">Portfolyo</h3>
+<h2 class="text-3xl font-bold">Son Çalışmalar</h2>
+</div>
+<a class="hidden md:flex items-center gap-2 text-sm text-gray-400 hover:text-primary transition-colors mt-4 md:mt-0" href="#">
+                    Tüm Projeleri Gör <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="group relative rounded-xl overflow-hidden glass-panel border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+<div class="h-48 bg-gray-900 overflow-hidden relative" data-alt="Screenshot of Harbeli Bilişim corporate website interface, dark theme">
+<!-- Image Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] to-transparent opacity-80 z-10"></div>
+<img alt="Harbeli Bilişim Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4ih_mTNWCgc4zIT38BObWasP_V8-HOBWGIKSpfy3U2B6bLtX85pyu27-MeliR_5YgnJCAUAYEOoDcwrBsLnqhVcMf6ofKSlXl61tPrMi0IqNLJ563CP2hOcbXTxzD8sTidSVkFsYLZlJLxUKkoyrxYx9EETXkidaAmX7TQsY_P0a-AXUEPrfxrjgcLZza1oqzb3MLJ83J5fYPbwB4m4cXLBx1PLO_2qCvN5ThrbS1AmByJAz6s3-JZYq5QJ6dKZH5uEFSYMaKlMI"/>
+</div>
+<div class="p-6 relative z-20 -mt-10">
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-bold tracking-wider text-primary bg-primary/10 px-2 py-1 rounded uppercase">Kurumsal</span>
+<span class="text-[10px] font-bold tracking-wider text-gray-400 bg-white/5 px-2 py-1 rounded uppercase">Web</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Harbeli Bilişim</h3>
+<p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            Kurumsal kimliği yansıtan, modern ve hızlı bir tanıtım sitesi. Özel CMS paneli ile kolay içerik yönetimi.
+                        </p>
+<div class="flex items-center justify-between mt-4 border-t border-white/5 pt-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-gray-500 hover:text-white cursor-pointer text-xl">open_in_new</span>
+<span class="material-symbols-outlined text-gray-500 hover:text-white cursor-pointer text-xl">code</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group relative rounded-xl overflow-hidden glass-panel border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+<div class="h-48 bg-gray-900 overflow-hidden relative" data-alt="Dashboard interface for Echt Zorg health management system">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] to-transparent opacity-80 z-10"></div>
+<img alt="Echt Zorg Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuF5DzGvDJvB_4vp5k5HhWaEjZ0AARiWJhBzQ3MVFXgtfz-BSIknzwhigEOjKA4lN2924jlPEWTN-0YZZOmNsNk9QEcjBARoSkDL3YCrB9qJpTvuCmeD8bdBPGhuyAoOawDukS3BIYswbGhwjPjgGxIAGtgx_5mik_z5q_SprMuDjkij44P2JFpjsf1HrRAdnizNcQdPD-YmXgvs-pAu6-EObLKftRk3FJ3k327iDrAM3ajB5hTqQtGPjFXpxlHR4ZGB1EXwquLb4"/>
+</div>
+<div class="p-6 relative z-20 -mt-10">
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-bold tracking-wider text-primary bg-primary/10 px-2 py-1 rounded uppercase">Sağlık</span>
+<span class="text-[10px] font-bold tracking-wider text-gray-400 bg-white/5 px-2 py-1 rounded uppercase">Platform</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Echt Zorg</h3>
+<p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            Hollanda merkezli sağlık kuruluşu için hasta takip ve randevu yönetim sistemi. KVKK/GDPR uyumlu güvenli altyapı.
+                        </p>
+<div class="flex items-center justify-between mt-4 border-t border-white/5 pt-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-gray-500 hover:text-white cursor-pointer text-xl">open_in_new</span>
+<span class="material-symbols-outlined text-gray-500 hover:text-white cursor-pointer text-xl">code</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group relative rounded-xl overflow-hidden glass-panel border border-white/5 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+<div class="h-48 bg-gray-900 overflow-hidden relative" data-alt="Educational platform interface for Levent School">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] to-transparent opacity-80 z-10"></div>
+<img alt="Levent School Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwWIUBclvEVmBf51DQWxLdRfeJXR1SuBWxI2UlVWFGsISZaLLnusO_HhP2X1069aBHoaSa24li8L6KvKI-GkB-u-k0NQkVeL3hnUEhcmGShJAO93krOcfelkRVN24C9yQdTnee100tnxi85YEekxMpFt5I-WZ9wsO_eoYS-E_y27e7e-53Zjb2FlMM_yqX_ZRBY76wMiEg6H7LUiLT6y_qFPZxyzbCycSk49EKoBiZJK_xvjc4tAzLohi3GukYw4SjtUEtVYJXkjE"/>
+</div>
+<div class="p-6 relative z-20 -mt-10">
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-bold tracking-wider text-primary bg-primary/10 px-2 py-1 rounded uppercase">Eğitim</span>
+<span class="text-[10px] font-bold tracking-wider text-gray-400 bg-white/5 px-2 py-1 rounded uppercase">LMS</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Levent School</h3>
+<p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            Öğrenci, veli ve öğretmenlerin entegre olduğu kapsamlı bir okul yönetim sistemi ve uzaktan eğitim modülü.
+                        </p>
+<div class="flex items-center justify-between mt-4 border-t border-white/5 pt-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-gray-500 hover:text-white cursor-pointer text-xl">open_in_new</span>
+<span class="material-symbols-outlined text-gray-500 hover:text-white cursor-pointer text-xl">code</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:hidden flex justify-center mt-8">
+<a class="flex items-center gap-2 text-sm text-gray-400 hover:text-primary transition-colors" href="#">
+                    Tüm Projeleri Gör <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Footer / Contact -->
+<footer class="py-24 w-full border-t border-white/5 mt-12 flex flex-col items-center" id="contact">
+<h2 class="text-4xl font-bold mb-8 text-center">Birlikte Harika Şeyler Yapalım</h2>
+<p class="text-gray-400 mb-10 max-w-md text-center">
+                Yeni bir proje fikriniz mi var veya sadece merhaba demek mi istiyorsunuz? 
+                Bana her zaman ulaşabilirsiniz.
+            </p>
+<a class="text-2xl md:text-3xl font-light text-white hover:text-primary transition-colors mb-12 border-b border-primary/30 pb-1" href="mailto:contact@hursitemreduru.com">
+                h.emreduru@gmail.com
+            </a>
+<div class="flex gap-6 mb-16">
+<a class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-primary hover:text-white hover:shadow-neon transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">code</span>
+</a>
+<a class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#0077b5] hover:text-white hover:shadow-lg transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">work</span>
+</a>
+<a class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#25d366] hover:text-white hover:shadow-lg transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">call</span>
+</a>
+</div>
+<p class="text-gray-600 text-xs text-center">
+                © 2024 Hurşit Emre Duru. Tüm hakları saklıdır. <br/>
+                Designed &amp; Coded with passion.
+            </p>
+</footer>
+</main>
+</body></html>
