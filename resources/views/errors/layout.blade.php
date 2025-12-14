@@ -54,7 +54,7 @@
 
         <!-- CTA Button -->
         <a href="{{ route('home') }}" class="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white transition-all duration-200 bg-transparent border-2 border-white/20 rounded-full hover:bg-white/10 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-            <span>{{ __('back_to_home') ?? 'Back to Home' }}</span>
+            <span>{{ __('Back to Home') }}</span>
             <svg class="w-5 h-5 ml-2 -mr-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
         </a>
     </div>
