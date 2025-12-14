@@ -50,6 +50,47 @@ A modern, dynamic personal website built with Laravel 11 and Filament PHP.
    php artisan make:filament-user
    ```
 
+## ❓ Troubleshooting
+
+### 1. Production: 405 Method Not Allowed or Missing Assets
+If you encounter `405 Method Not Allowed` on Filament login or missing styles in production:
+
+**Cause:** Livewire assets are not accessible or Nginx is not passing HTTPS headers correctly, leading to Mixed Content or blocked POST requests.
+
+**Solution:**
+1. **Publish Assets:**
+   ```bash
+   php artisan filament:assets
+   php artisan vendor:publish --tag=livewire:assets
+   ```
+2. **Nginx Configuration:**
+   Ensure your Nginx config passes the HTTPS header:
+   ```nginx
+   fastcgi_param HTTPS on;
+   ```
+3. **Trust Proxies:**
+   In `bootstrap/app.php`, ensure proxies are trusted:
+   ```php
+   ->withMiddleware(function (Middleware $middleware): void {
+       $middleware->trustProxies(at: '*');
+   })
+   ```
+
+### 2. Production: 403 Forbidden on Login
+**Cause:** Filament restricts production access by default.
+
+**Solution:**
+Ensure your `User` model implements `FilamentUser` and returns `true` in `canAccessPanel()`:
+```php
+class User extends Authenticatable implements FilamentUser
+{
+    public function canAccessPanel(\Filament\Panel $panel): bool
+    {
+        return true;
+    }
+}
+```
+
 ## 📄 License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
