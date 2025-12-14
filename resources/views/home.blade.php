@@ -2,97 +2,10 @@
 
 @section('content')
 <!-- Ambient Background -->
-<style>
-    /* Ambient Glow Background */
-    .ambient-glow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background:
-            radial-gradient(circle at 15% 50%, rgba(51, 13, 242, 0.08) 0%, transparent 25%),
-            radial-gradient(circle at 85% 30%, rgba(51, 13, 242, 0.05) 0%, transparent 25%);
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .glass-panel {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .timeline-line::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 15px;
-        width: 2px;
-        background: linear-gradient(to bottom, #330df2 0%, rgba(51, 13, 242, 0.1) 100%);
-    }
-
-    /* Lenis Smooth Scroll Recommended CSS */
-    html.lenis, html.lenis body {
-        height: auto;
-    }
-
-    .lenis.lenis-smooth {
-        scroll-behavior: auto !important;
-    }
-
-    .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-    }
-
-    .lenis.lenis-stopped {
-        overflow: hidden;
-    }
-
-    .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-    }
-</style>
 <div class="ambient-glow"></div>
 
 <!-- Navigation -->
-<nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-    <div class="glass-panel rounded-full px-6 py-3 flex items-center gap-6 shadow-2xl">
-        <a class="text-sm font-medium hover:text-primary transition-colors" href="#hero">{{ __('Home') }}</a>
-        <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">{{ __('About') }}</a>
-        <a class="text-sm font-medium hover:text-primary transition-colors" href="#experience">{{ __('Experience') }}</a>
-        <a class="text-sm font-medium hover:text-primary transition-colors" href="{{ route('portfolio.index') }}">{{ __('Portfolio') }}</a>
-        <a class="text-sm font-medium hover:text-primary transition-colors" href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
-        <a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">{{ __('Contact') }}</a>
-
-        <!-- Divider -->
-        <div class="h-6 w-px bg-white/20 mx-2"></div>
-
-        <div class="flex items-center gap-4">
-            <a class="bg-primary hover:bg-[#4b2bff] text-white text-xs font-bold px-4 py-2 rounded-full shadow-neon hover:shadow-neon-hover transition-all duration-300" href="#">
-                {{ __('Download CV') }}
-            </a>
-
-            <!-- Vertical Line Divider -->
-            <div class="h-6 w-px bg-white/20"></div>
-
-            <!-- Language Switcher -->
-            <div class="flex items-center gap-2 text-xs font-bold">
-                 @if(app()->getLocale() == 'en')
-                    <span class="text-white">EN</span>
-                    <span class="text-gray-600">/</span>
-                    <a href="{{ route('language.switch', 'tr') }}" class="text-gray-400 hover:text-white transition-colors">TR</a>
-                @else
-                    <a href="{{ route('language.switch', 'en') }}" class="text-gray-400 hover:text-white transition-colors">EN</a>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-white">TR</span>
-                @endif
-            </div>
-        </div>
-    </div>
-</nav>
+@include('partials.header')
 
 <!-- Main Layout -->
 <main class="relative z-10 flex flex-col items-center w-full max-w-[1200px] mx-auto px-6 md:px-12">
@@ -285,7 +198,7 @@
                 <div class="p-6 relative z-20 -mt-10">
                     <div class="flex gap-2 mb-3">
                         @if($project->link)
-                         <a href="{{ $project->link }}" target="_blank" class="text-[10px] font-bold tracking-wider text-primary bg-primary/10 px-2 py-1 rounded uppercase hover:bg-primary hover:text-white transition-colors">Link</a>
+                         <a href="{{ $project->link }}" target="_blank" class="relative z-30 text-[10px] font-bold tracking-wider text-primary bg-primary/10 px-2 py-1 rounded uppercase hover:bg-primary hover:text-white transition-colors">Link</a>
                         @endif
                     </div>
                     <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{{ $project->title }}</h3>
@@ -293,6 +206,7 @@
                         {{ $project->description }}
                     </p>
                 </div>
+                <a href="{{ route('portfolio.show', $project->slug) }}" class="absolute inset-0 z-10"></a>
             </div>
             @endforeach
         </div>
@@ -316,7 +230,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($posts as $post)
-            <article class="group rounded-xl bg-[#1a1a1a]/50 border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-neon flex flex-col h-full">
+            <article class="group relative rounded-xl bg-[#1a1a1a]/50 border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-neon flex flex-col h-full">
                 <div class="relative h-48 overflow-hidden">
                     <img alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="{{ $post->thumbnail ?? '' }}"/>
                     <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-white">
@@ -332,6 +246,7 @@
                         <span>{{ $post->published_at->format('M d, Y') }}</span>
                     </div>
                 </div>
+                <a href="{{ route('blog.show', $post->slug) }}" class="absolute inset-0 z-10"></a>
             </article>
             @endforeach
         </div>
@@ -369,37 +284,4 @@
     </footer>
 </main>
 
-@push('scripts')
-<!-- Lenis Smooth Scroll -->
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
-        // Connect lenis to anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                lenis.scrollTo(this.getAttribute('href'));
-            });
-        });
-    });
-</script>
-@endpush
 @endsection

@@ -26,6 +26,8 @@ class EloquentBlogRepository implements BlogRepositoryInterface
 
     public function findBySlug(string $slug)
     {
-        return $this->model->where('slug', $slug)->firstOrFail();
+        return $this->model->where('slug->' . app()->getLocale(), $slug)
+            ->orWhere('slug->en', $slug)
+            ->firstOrFail();
     }
 }

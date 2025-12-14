@@ -19,4 +19,10 @@ class PortfolioController extends Controller
         $projects = $this->portfolioRepository->all();
         return view('portfolio.index', compact('projects'));
     }
+
+    public function show($slug)
+    {
+        $project = $this->portfolioRepository->findBySlug($slug);
+        return view('portfolio.show', compact('project'));
+    }
 }

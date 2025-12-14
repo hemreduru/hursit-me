@@ -1,72 +1,6 @@
 @extends('layouts.master')
 
-@push('styles')
-<style>
-    /* Custom Utilities for Glassmorphism & Glows */
-    .glass-panel {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
 
-    .glass-nav {
-        background: rgba(13, 13, 13, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .neon-text-glow {
-        text-shadow: 0 0 20px rgba(51, 13, 242, 0.5);
-    }
-
-    .neon-box-glow {
-        box-shadow: 0 0 20px rgba(51, 13, 242, 0.15);
-    }
-
-    .hover-card:hover {
-        transform: translateY(-4px) scale(1.01);
-        border-color: rgba(51, 13, 242, 0.4);
-        box-shadow: 0 10px 30px -10px rgba(51, 13, 242, 0.3);
-    }
-
-    .code-syntax-keyword { color: #c678dd; }
-    .code-syntax-string { color: #98c379; }
-    .code-syntax-func { color: #61afef; }
-    .code-syntax-plain { color: #abb2bf; }
-
-    /* Hide scrollbar for ticker */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    /* Lenis Smooth Scroll Recommended CSS */
-    html.lenis, html.lenis body {
-        height: auto;
-    }
-
-    .lenis.lenis-smooth {
-        scroll-behavior: auto !important;
-    }
-
-    .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-    }
-
-    .lenis.lenis-stopped {
-        overflow: hidden;
-    }
-
-    .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-    }
-</style>
-@endpush
 
 @section('content')
 <!-- Background Ambient Glow -->
@@ -75,46 +9,7 @@
     <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-secondary/10 blur-[120px]"></div>
 </div>
 
-<!-- Floating Navigation (Updated to match Home) -->
-<div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-    <nav class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-6 shadow-lg max-w-4xl w-full">
-         <a class="text-xl font-bold tracking-tighter flex items-center gap-2 group" href="{{ route('home') }}">
-            <span class="material-symbols-outlined text-primary group-hover:animate-pulse">terminal</span>
-            DEV.
-        </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#hero">{{ __('Home') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#about">{{ __('About') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#experience">{{ __('Experience') }}</a>
-            <a class="text-sm text-white font-bold transition-colors" href="{{ route('portfolio.index') }}">{{ __('Portfolio') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#contact">{{ __('Contact') }}</a>
-        </div>
-
-        <div class="flex items-center gap-4">
-             <a class="bg-primary/90 hover:bg-primary text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all shadow-[0_0_15px_rgba(51,13,242,0.4)] hover:shadow-[0_0_25px_rgba(51,13,242,0.6)]" href="#">
-                {{ __('Download CV') }}
-            </a>
-
-             <!-- Vertical Line Divider -->
-            <div class="h-6 w-px bg-white/20"></div>
-
-             <!-- Language Switcher -->
-            <div class="flex items-center gap-2 text-xs font-bold">
-                 @if(app()->getLocale() == 'en')
-                    <span class="text-white">EN</span>
-                    <span class="text-gray-600">/</span>
-                    <a href="{{ route('language.switch', 'tr') }}" class="text-gray-400 hover:text-white transition-colors">TR</a>
-                @else
-                    <a href="{{ route('language.switch', 'en') }}" class="text-gray-400 hover:text-white transition-colors">EN</a>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-white">TR</span>
-                @endif
-            </div>
-        </div>
-    </nav>
-</div>
+@include('partials.header')
 
 <main class="relative z-10 flex flex-col items-center w-full min-h-screen pt-32 pb-20 px-4 md:px-10 max-w-7xl mx-auto">
     <!-- Rest of the Portfolio content remains same, just ensuring static text is consistently using updated layout -->
@@ -135,11 +30,11 @@
             @foreach($projects as $index => $project)
             <div class="group relative {{ ($index % 4 == 0 || $index % 4 == 3) ? 'md:col-span-2' : '' }} rounded-2xl overflow-hidden glass-panel border-0 hover-card transition-all duration-300 cursor-pointer">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-40" data-alt="{{ $project->title }}" style='background-image: url("{{ $project->image }}");'></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-8 w-full">
+                <div class="absolute inset-0 bg-linear-to-t from-background-dark via-background-dark/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full z-20">
                     <div class="flex gap-2 mb-3">
                         @if($project->link)
-                        <a href="{{ $project->link }}" target="_blank" class="px-2 py-1 bg-primary/20 text-primary text-xs font-bold rounded uppercase border border-primary/20 backdrop-blur-sm hover:bg-primary hover:text-white transition-colors">
+                        <a href="{{ $project->link }}" target="_blank" class="relative z-30 px-2 py-1 bg-primary/20 text-primary text-xs font-bold rounded uppercase border border-primary/20 backdrop-blur-sm hover:bg-primary hover:text-white transition-colors">
                             {{ __('View Project') }}
                         </a>
                         @endif
@@ -149,6 +44,7 @@
                         {{ $project->description }}
                     </p>
                 </div>
+                <a href="{{ route('portfolio.show', $project->slug) }}" class="absolute inset-0 z-10"></a>
             </div>
             @endforeach
         </div>
@@ -177,40 +73,4 @@
     </footer>
 </main>
 
-@push('scripts')
-<!-- Lenis Smooth Scroll -->
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
-        // Connect lenis to anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Only prevent default if it's an anchor on the same page
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    lenis.scrollTo(this.getAttribute('href'));
-                }
-            });
-        });
-    });
-</script>
-@endpush
 @endsection

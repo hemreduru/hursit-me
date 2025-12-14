@@ -27,17 +27,31 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->required(),
-                Forms\Components\RichEditor::make('content')
-                    ->required(),
-                Forms\Components\FileUpload::make('thumbnail')
-                    ->image(),
-                Forms\Components\DateTimePicker::make('published_at'),
-                Forms\Components\Toggle::make('is_active')
-                    ->required(),
+                Forms\Components\Section::make('Content')
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\RichEditor::make('content')
+                            ->required()
+                            ->fileAttachmentsDisk('public')
+                            ->fileAttachmentsDirectory('blog-content')
+                            ->fileAttachmentsVisibility('public')
+                            ->columnSpanFull(),
+                        Forms\Components\FileUpload::make('thumbnail')
+                            ->image()
+                            ->disk('public')
+                            ->directory('blog-thumbnails')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->columnSpanFull(),
+                        Forms\Components\DateTimePicker::make('published_at'),
+                        Forms\Components\Toggle::make('is_active')
+                            ->required(),
+                    ])->columns(2)
             ]);
     }
 

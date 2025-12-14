@@ -1,95 +1,5 @@
 @extends('layouts.master')
 
-@section('tailwind_config')
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "primary": "#0d0df2",
-                    "primary-glow": "#4d4dff",
-                    "accent-purple": "#a855f7",
-                    "background-light": "#f5f5f8",
-                    "background-dark": "#0d0d0d",
-                    "surface-dark": "#161616",
-                },
-                fontFamily: {
-                    "display": ["Space Grotesk", "sans-serif"],
-                    "body": ["Space Grotesk", "sans-serif"]
-                },
-                backgroundImage: {
-                    'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    'glass': 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
-                },
-                boxShadow: {
-                    'neon': '0 0 20px -5px rgba(13, 13, 242, 0.3)',
-                    'neon-hover': '0 0 30px -5px rgba(13, 13, 242, 0.5)',
-                }
-            },
-        },
-    }
-</script>
-@endsection
-
-@push('styles')
-<style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #0d0d0d;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #222;
-        border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #0d0df2;
-    }
-
-    .glass-panel {
-        background: rgba(22, 22, 22, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-     .glass-nav {
-        background: rgba(13, 13, 13, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .text-glow {
-        text-shadow: 0 0 20px rgba(13, 13, 242, 0.5);
-    }
-
-    /* Lenis Smooth Scroll Recommended CSS */
-    html.lenis, html.lenis body {
-        height: auto;
-    }
-
-    .lenis.lenis-smooth {
-        scroll-behavior: auto !important;
-    }
-
-    .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-    }
-
-    .lenis.lenis-stopped {
-        overflow: hidden;
-    }
-
-    .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-    }
-</style>
-@endpush
-
 @section('content')
 <!-- Ambient Background Glows -->
 <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -97,48 +7,7 @@
     <div class="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-accent-purple/20 rounded-full blur-[100px] opacity-20"></div>
 </div>
 
-<!-- Floating Navigation (Updated to match Home) -->
-<div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-    <nav class="glass-nav rounded-full px-6 py-3 flex items-center justify-between gap-6 shadow-lg max-w-4xl w-full">
-         <div class="flex items-center gap-2">
-            <div class="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-lg">
-                <span class="material-symbols-outlined text-[24px]">terminal</span>
-            </div>
-            <h2 class="text-white text-xl font-bold tracking-tight">DevLog<span class="text-primary">.</span>io</h2>
-        </div>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#hero">{{ __('Home') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#about">{{ __('About') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#experience">{{ __('Experience') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('portfolio.index') }}">{{ __('Portfolio') }}</a>
-            <a class="text-sm text-white font-bold transition-colors" href="{{ route('blog.index') }}">{{ __('Blog') }}</a>
-            <a class="text-sm text-gray-400 hover:text-white transition-colors" href="{{ route('home') }}#contact">{{ __('Contact') }}</a>
-        </div>
-
-        <div class="flex items-center gap-4">
-             <button class="flex items-center justify-center px-5 h-10 bg-primary hover:bg-primary-glow text-white text-sm font-bold rounded-full transition-all shadow-neon hover:shadow-neon-hover">
-                {{ __('Subscribe') }}
-            </button>
-
-             <!-- Vertical Line Divider -->
-            <div class="h-6 w-px bg-white/20"></div>
-
-             <!-- Language Switcher -->
-            <div class="flex items-center gap-2 text-xs font-bold">
-                 @if(app()->getLocale() == 'en')
-                    <span class="text-white">EN</span>
-                    <span class="text-gray-600">/</span>
-                    <a href="{{ route('language.switch', 'tr') }}" class="text-gray-400 hover:text-white transition-colors">TR</a>
-                @else
-                    <a href="{{ route('language.switch', 'en') }}" class="text-gray-400 hover:text-white transition-colors">EN</a>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-white">TR</span>
-                @endif
-            </div>
-        </div>
-    </nav>
-</div>
+@include('partials.header')
 
 <main class="relative pt-32 pb-16 min-h-screen">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
@@ -235,7 +104,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($posts as $post)
-                <article class="group rounded-xl bg-surface-dark border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-neon flex flex-col h-full">
+                <article class="group relative rounded-xl bg-surface-dark border border-white/5 overflow-hidden hover:border-primary/40 transition-all duration-300 hover:shadow-neon flex flex-col h-full">
                     <div class="relative h-48 overflow-hidden">
                         <img alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="{{ $post->thumbnail }}"/>
                         <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-white">
@@ -300,40 +169,4 @@
     </div>
 </footer>
 
-@push('scripts')
-<!-- Lenis Smooth Scroll -->
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
-        // Connect lenis to anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Only prevent default if it's an anchor on the same page
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    lenis.scrollTo(this.getAttribute('href'));
-                }
-            });
-        });
-    });
-</script>
-@endpush
 @endsection

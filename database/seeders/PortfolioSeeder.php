@@ -23,6 +23,7 @@ class PortfolioSeeder extends Seeder
             'image' => 'https://placehold.co/600x400/2563eb/ffffff?text=Echt+Zorg',
             'link' => '#',
             'sort_order' => 1,
+            'is_active' => true,
         ]);
 
         // 2. Harbeli Bilişim
@@ -36,6 +37,7 @@ class PortfolioSeeder extends Seeder
             'image' => 'https://placehold.co/600x400/ea580c/ffffff?text=Harbeli',
             'link' => '#',
             'sort_order' => 2,
+            'is_active' => true,
         ]);
 
         // 3. Levent School
@@ -49,6 +51,7 @@ class PortfolioSeeder extends Seeder
             'image' => 'https://placehold.co/600x400/16a34a/ffffff?text=Levent+Schools',
             'link' => '#',
             'sort_order' => 3,
+            'is_active' => true,
         ]);
     }
 }

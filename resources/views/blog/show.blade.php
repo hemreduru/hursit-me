@@ -1,17 +1,10 @@
 @extends('layouts.master')
 
-@push('styles')
-<style>
-    .glass-panel {
-        background: rgba(22, 22, 22, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-</style>
-@endpush
+
 
 @section('content')
+
+@include('partials.header')
 <main class="relative pt-32 pb-16 min-h-screen">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Back Button -->

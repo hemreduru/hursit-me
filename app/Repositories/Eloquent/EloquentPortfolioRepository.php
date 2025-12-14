@@ -21,6 +21,17 @@ class EloquentPortfolioRepository implements PortfolioRepositoryInterface
 
     public function getFeatured($limit = 3)
     {
-        return $this->model->orderBy('sort_order')->take($limit)->get();
+        return $this->model->where('is_active', true)
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->get();
+    }
+
+    public function findBySlug(string $slug)
+    {
+        return $this->model->where('slug->' . app()->getLocale(), $slug)
+            ->orWhere('slug->en', $slug)
+            ->firstOrFail();
     }
 }

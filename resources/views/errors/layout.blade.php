@@ -38,7 +38,8 @@
 
     <div class="relative z-10 text-center px-4">
         <!-- Error Code -->
-        <h1 class="text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 error-text mb-4">
+        <!-- Error Code -->
+        <h1 class="text-9xl font-black text-transparent bg-clip-text bg-linear-to-r from-pink-500 via-purple-500 to-cyan-500 error-text mb-4">
             @yield('code')
         </h1>
 

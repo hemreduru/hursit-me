@@ -16,6 +16,7 @@ Route::get('language/{locale}', [LanguageController::class, 'switch'])->name('la
 Route::middleware(['web', \App\Http\Middleware\SetLocale::class])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+    Route::get('/portfolio/{slug}', [PortfolioController::class, 'show'])->name('portfolio.show');
     Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 });
